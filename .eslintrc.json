@@ -1,4 +1,7 @@
 {
+  "globals": {
+    "JSX":"readonly"
+  },
   "env": {
     "browser": true,
     "es2021": true
@@ -12,7 +15,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 7,
+    "ecmaVersion": 2021,
     "sourceType": "module"
   },
   "plugins": [
@@ -49,7 +52,7 @@
         "code": 120
       }
     ],
-    "import/no-unresolved": "error",
+    "import/no-unresolved": 2,
     "object-curly-newline": "off",
     "linebreak-style": 0,
     "import/prefer-default-export": "off",
