@@ -6,7 +6,7 @@ import { createContext } from 'react';
 export const ProductContext = createContext<ProductContextProps>({} as ProductContextProps);
 const { Provider } = ProductContext;
 
-export const ProductCard = ({ product, children }: ProductProps) => {
+export const ProductCard = ({ product, children, className, style }: ProductProps) => {
   const { counter, increaseBy } = useProduct();
 
   return (
@@ -16,7 +16,7 @@ export const ProductCard = ({ product, children }: ProductProps) => {
       product,
     }}
     >
-      <div className={styles.productCard}>
+      <div className={`${styles.productCard} ${className}`} style={style}>
         {children}
       </div>
     </Provider>

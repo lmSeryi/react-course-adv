@@ -1,6 +1,8 @@
 import { ProductButtons, ProductCard, ProductImage, ProductName } from 'component-patterns/components';
 import { Product } from 'component-patterns/interfaces/Product';
 
+import '../styles/custom-styles.css';
+
 const product: Product = {
   id: 1,
   name: 'Coffee Mug',
@@ -21,7 +23,7 @@ export const ShoppingPage = () => (
       <ProductCard product={product}>
         <ProductCard.Image />
         <ProductCard.Name />
-        <ProductCard.Buttons />
+        <ProductCard.Buttons style={{ display: 'flex', justifyContent: 'flex-end' }} />
       </ProductCard>
 
       <ProductCard product={product}>
