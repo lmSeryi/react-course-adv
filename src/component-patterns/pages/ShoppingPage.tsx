@@ -1,36 +1,57 @@
 import { ProductButtons, ProductCard, ProductImage, ProductName } from 'component-patterns/components';
-import { Product } from 'component-patterns/interfaces/Product';
-
+import { useShoppingCart } from 'component-patterns/hooks/useShoppingCart';
+import { products } from '../data/products';
 import '../styles/custom-styles.css';
 
-const product: Product = {
-  id: 1,
-  name: 'Coffee Mug',
-  price: 10.0,
-  img: './coffee-mug.png',
-};
+export const ShoppingPage = () => {
+  const { cart, onProductCountChange } = useShoppingCart();
 
-export const ShoppingPage = () => (
-  <div>
-    <h1>Shopping</h1>
-    <hr />
-    <div style={{
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-    }}
-    >
-      <ProductCard product={product}>
-        <ProductCard.Image />
-        <ProductCard.Name />
-        <ProductCard.Buttons style={{ display: 'flex', justifyContent: 'flex-end' }} />
-      </ProductCard>
+  return (
+    <div>
+      <h1>Shopping</h1>
+      <hr />
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+      }}
+      >
+        {products.map((product) => (
+          <ProductCard
+            className="bg-dark text-white"
+            product={product}
+            key={product.id}
+            onChange={onProductCountChange}
+            value={cart[product.id]?.count || 0}
+          >
+            <ProductImage />
+            <ProductName />
+            <ProductButtons className="custom-buttons" />
+          </ProductCard>
+        ))}
+      </div>
 
-      <ProductCard product={product}>
-        <ProductImage img={product.img} />
-        <ProductName name={product.name} />
-        <ProductButtons />
-      </ProductCard>
+      <div className="shopping-cart">
+        {Object.values(cart).map((value) => (
+          <ProductCard
+            key={value.id}
+            product={value}
+            className="bg-dark text-white"
+            style={{ width: '100px' }}
+            onChange={onProductCountChange}
+            value={value.count}
+          >
+            <ProductImage className="custom-image" />
+            <ProductButtons
+              className="custom-buttons"
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            />
+          </ProductCard>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};

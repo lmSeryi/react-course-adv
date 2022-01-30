@@ -7,11 +7,18 @@ export interface Product {
   img?: string;
 }
 
+export interface OnChangeArgs {
+  product: Product;
+  count: number;
+}
+
 export interface ProductProps {
   product: Product;
   children?: ReactElement | ReactElement[];
   style?: CSSProperties;
   className?: string;
+  onChange?: (args: OnChangeArgs) => void;
+  value?: number;
 }
 
 export interface ProductContextProps {
